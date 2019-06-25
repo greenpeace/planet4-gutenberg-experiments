@@ -106180,8 +106180,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ArcticSunriseIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ArcticSunriseIcon */ "./react-blocks/src/blocks/ArcticSunrise/ArcticSunriseIcon.js");
-/* harmony import */ var _components_ShipModel_ShipModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/ShipModel/ShipModel */ "./react-blocks/src/components/ShipModel/ShipModel.js");
+/* harmony import */ var _ArcticSunriseIcon_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ArcticSunriseIcon.js */ "./react-blocks/src/blocks/ArcticSunrise/ArcticSunriseIcon.js");
+/* harmony import */ var _components_ShipModel_ShipModel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/ShipModel/ShipModel.js */ "./react-blocks/src/components/ShipModel/ShipModel.js");
 
 
 
@@ -106194,15 +106194,15 @@ var ArcticSunriseBlock = function ArcticSunriseBlock() {
   //   See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
   registerBlockType('planet4-gutenberg-experiments/arctic-sunrise', {
-    // - Add the `barquito` block to the `planet4-gutenberg-experiments` namespace
+    // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
     title: 'Arctic Sunrise',
     // - Sets the block title
-    icon: _ArcticSunriseIcon__WEBPACK_IMPORTED_MODULE_2__["ArcticSunriseIcon"],
+    icon: _ArcticSunriseIcon_js__WEBPACK_IMPORTED_MODULE_2__["ArcticSunriseIcon"],
     // - The icon is a React component
     category: 'planet4-gutenberg-experiments',
     // - Adds it to our custom category
     edit: function edit() {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_ShipModel_ShipModel__WEBPACK_IMPORTED_MODULE_3__["ShipModel"], null); // - Returns the JSX for the Edit window
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_ShipModel_ShipModel_js__WEBPACK_IMPORTED_MODULE_3__["ShipModel"], null); // - Returns the JSX for the Edit window
     },
     save: function save() {
       return null; // - The `save()` function of a block's backend

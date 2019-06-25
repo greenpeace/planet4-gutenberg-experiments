@@ -1,5 +1,5 @@
-import { ArcticSunriseIcon } from './ArcticSunriseIcon';
-import { ShipModel } from '../../components/ShipModel/ShipModel';
+import { ArcticSunriseIcon } from './ArcticSunriseIcon.js';
+import { ShipModel } from '../../components/ShipModel/ShipModel.js';
 
 export class ArcticSunriseBlock {
     constructor() {
@@ -7,7 +7,7 @@ export class ArcticSunriseBlock {
                                                                               //   the `wp.blocks` object.
                                                                               //   See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
-        registerBlockType( 'planet4-gutenberg-experiments/arctic-sunrise', {  // - Add the `barquito` block to the `planet4-gutenberg-experiments` namespace
+        registerBlockType( 'planet4-gutenberg-experiments/arctic-sunrise', {  // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
             title: 'Arctic Sunrise',                                          // - Sets the block title
             icon: ArcticSunriseIcon,                                          // - The icon is a React component
             category: 'planet4-gutenberg-experiments',                        // - Adds it to our custom category
