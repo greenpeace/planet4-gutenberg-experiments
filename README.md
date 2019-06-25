@@ -49,11 +49,11 @@ I customized the config to have this:
 ```
 react-blocks
   src                      - The JSX files
-	  blocks                   - Block definitions for the editor (title, icon)
-		components               - Components used to render the blocks (reusable, shareable)
-	build                    - The compiled output
-	editorIndex.jsx          - The main JS for the editor
-	frontendIndex.jsx        - The main JS for the frontend
+    blocks                   - Block definitions for the editor (title, icon)
+    components               - Components used to render the blocks (reusable, shareable)
+  build                    - The compiled output
+  editorIndex.jsx          - The main JS for the editor
+  frontendIndex.jsx        - The main JS for the frontend
 ```
 
 ### `edit()`, `save()` and the absence of `render()` or `view()`
