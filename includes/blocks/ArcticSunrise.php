@@ -17,10 +17,10 @@ class ArcticSunrise extends Base_Block {
 
   public function register_block() {
     wp_enqueue_script(
-      'planet4-gutenberg-experiments-editor-script', 											// - Script handler
+      'planet4-gutenberg-experiments-editor-script',                      // - Script handler
       P4_GUTENBERG_EXPERIMENTS_BASE_URL .
       'react-blocks/build/editorIndex.js',     		                        // - Bundled JS for the editor
-      [ 'wp-blocks' ] 																										// - Helpers for registering blocks
+      [ 'wp-blocks' ]                                                     // - Helpers for registering blocks
     );
   }
 

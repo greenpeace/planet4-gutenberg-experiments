@@ -56,6 +56,13 @@ react-blocks
   frontendIndex.jsx        - The main JS for the frontend
 ```
 
+### PHP Side
+
+Everything is under `includes` and "borrowing" (cof, cof, stealing) code from Stefan's GPCH Gutenberg blocks.
+The block files are commented to see how the React block bundles are injected in the editor and the frontend.
+
+For example: `ArcticSunrise.php`
+
 ### `edit()`, `save()` and the absence of `render()` or `view()`
 
 WP's native `save()` function for a Gutenberg Block is not what you may expect. It is a *pure function* that you can use if you want to **generate static content using JS in the client side, to be saved on the server**.
