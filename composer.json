@@ -1,0 +1,21 @@
+{
+    "name": "greenpeace/planet4-gutenberg-experiments",
+    "description": "Provides Planet4 content blocks specific to Greenpeace Switzerland",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "require": {
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Greenpeace\\Planet4GutenbergExperiments\\": [
+                "includes"
+            ],
+            "Greenpeace\\Planet4GutenbergExperiments\\Blocks\\": [
+                "includes/blocks"
+            ]
+        }
+    }
+}
