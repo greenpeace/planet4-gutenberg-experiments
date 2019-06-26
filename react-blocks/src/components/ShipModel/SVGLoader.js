@@ -134,8 +134,6 @@ SVGLoader.prototype = {
 
 			var d = node.getAttribute( 'd' );
 
-			// console.log( d );
-
 			var commands = d.match( /[a-df-z][^a-df-z]*/ig );
 
 			for ( var i = 0, l = commands.length; i < l; i ++ ) {
@@ -431,8 +429,6 @@ SVGLoader.prototype = {
 						console.warn( command );
 
 				}
-
-				// console.log( type, parseFloats( data ), parseFloats( data ).length  )
 
 				if ( doSetFirstPoint ) {
 
@@ -761,7 +757,7 @@ SVGLoader.prototype = {
 			var transform = new THREE.Matrix3();
 			var currentTransform = tempTransform0;
 			var transformsTexts = node.getAttribute( 'transform' ).split( ' ' );
-			
+
 			for ( var tIndex = transformsTexts.length - 1; tIndex >= 0; tIndex-- ) {
 
 				var transformText = transformsTexts[ tIndex ];
@@ -773,7 +769,7 @@ SVGLoader.prototype = {
 					var transformType = transformText.substr( 0, openParPos );
 
 					var array = parseFloats( transformText.substr( openParPos + 1, closeParPos - openParPos - 1 ) );
-					
+
 					currentTransform.identity();
 
 					switch ( transformType ) {
@@ -977,10 +973,6 @@ SVGLoader.prototype = {
 			return Math.sqrt( te[ 3 ] * te[ 3 ] + te[ 4 ] * te[ 4 ] )
 		}
 
-		//
-
-		console.log( 'THREE.SVGLoader' );
-
 		var paths = [];
 
 		var transformStack = [];
@@ -992,23 +984,11 @@ SVGLoader.prototype = {
 
 		var currentTransform = new THREE.Matrix3();
 
-		console.time( 'THREE.SVGLoader: DOMParser' );
-
 		var xml = new DOMParser().parseFromString( text, 'image/svg+xml' ); // application/xml
-
-		console.timeEnd( 'THREE.SVGLoader: DOMParser' );
-
-		console.time( 'THREE.SVGLoader: Parse' );
 
 		parseNode( xml.documentElement, { fill: '#000' } );
 
-		// console.log( paths );
-
-
-		console.timeEnd( 'THREE.SVGLoader: Parse' );
-
 		return paths;
-
 	}
 
 };
