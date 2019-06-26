@@ -71,7 +71,7 @@ A JS Gutenberg Block has two main methods:
 - `edit()`: Which renders the block in the editor
 - `save()`: Which should output static content based on the value of the block's *attributes*, thus, it is a *pure function* of its *attributes*. The output of `save()` is **escaped**.
 
-`save()` is invoked when you save the post in the editor.
+`save()` is invoked in several places: when you save the post in the editor, when you focus out of editable fields.
 
 In the frontend, Wordpress will render whatever the output of `save()` was when invoked, so there is no `render()` or `view()` methods in the `registerBlockType` method.
 
