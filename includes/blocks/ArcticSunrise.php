@@ -8,6 +8,8 @@ class ArcticSunrise extends Base_Block {
       'editor_script' => 'planet4-gutenberg-experiments',
       'render_callback' => [ $this, 'render' ]
     ] );
+
+    add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_react' ] );
   }
 
   public function enqueue_react() {
