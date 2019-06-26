@@ -8,6 +8,8 @@ export class LayoutSelector extends Component {
 	render() {
 		return <div className='LayoutSelector'>
 			<style>{`
+        // TODO - Move to Sass or use styled-jsx
+
 				.LayoutSelector {
 					display: flex;
 					width: 100%;
