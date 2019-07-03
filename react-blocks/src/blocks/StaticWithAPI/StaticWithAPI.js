@@ -3,7 +3,7 @@ import { React, Component } from 'react';
 // Include a Select control from WP's React components
 import { SelectControl } from '@wordpress/components';
 
-export class DynamicReact extends Component {
+export class StaticWithAPI extends Component {
 		constructor(props) {
 			super(props)
 			this.renderEdit = this.renderEdit.bind(this);

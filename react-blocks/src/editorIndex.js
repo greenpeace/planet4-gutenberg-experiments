@@ -1,9 +1,9 @@
 import { StaticBlock } from './blocks/Static/StaticBlock';
+import { StaticWithAPIBlock } from './blocks/StaticWithAPI/StaticWithAPIBlock';
 import { ArcticSunriseBlock } from './blocks/ArcticSunrise/ArcticSunriseBlock';
 import { CoversBlock } from './blocks/Covers/CoversBlock';
-import { DynamicReactBlock } from './blocks/DynamicReact/DynamicReactBlock';
 
 const staticBlock = new StaticBlock();
-const dynamicReactBlock = new DynamicReactBlock();
-const coversBlock = new CoversBlock();
+const staticWithAPIBlock = new StaticWithAPIBlock();
 const arcticSunriseBlock = new ArcticSunriseBlock();
+const coversBlock = new CoversBlock();

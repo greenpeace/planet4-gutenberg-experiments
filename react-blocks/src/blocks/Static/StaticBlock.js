@@ -1,5 +1,5 @@
 import { StaticIcon } from '././StaticIcon';
-import { Static } from '../../components/Static/Static';
+import { Static } from './Static';
 
 export class StaticBlock {
     constructor() {

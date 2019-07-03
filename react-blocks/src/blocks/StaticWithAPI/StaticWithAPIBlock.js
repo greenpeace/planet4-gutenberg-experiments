@@ -1,11 +1,11 @@
-import { DynamicReact } from '../../components/DynamicReact/DynamicReact';
+import { StaticWithAPI } from './StaticWithAPI';
 
-export class DynamicReactBlock {
+export class StaticWithAPIBlock {
     constructor() {
 				const { registerBlockType } = wp.blocks;
 				const { withSelect } = wp.data;
-        registerBlockType( 'planet4-gutenberg-experiments/dynamic-react', {
-            title: 'Dynamic React (Ex. 2)',
+        registerBlockType( 'planet4-gutenberg-experiments/static-with-api', {
+            title: 'Static with API (Ex. 2)',
             icon: 'format-video',
 						category: 'planet4-gutenberg-experiments',
 						attributes: {
@@ -31,14 +31,14 @@ export class DynamicReactBlock {
 									setAttributes( { selectedPostTitle: value } );
 								}
 
-								return <DynamicReact
+								return <StaticWithAPI
 									isSelected={ isSelected }
 									posts={ posts }
 									selectedPostTitle={ attributes.selectedPostTitle }
 									onSelectedPostChange={ onSelectedPostChange } />
 						} ),
             save( { attributes } ) {
-							return <DynamicReact selectedPostTitle={ attributes.selectedPostTitle } />;
+							return <StaticWithAPI selectedPostTitle={ attributes.selectedPostTitle } />;
             }
         } );
     };

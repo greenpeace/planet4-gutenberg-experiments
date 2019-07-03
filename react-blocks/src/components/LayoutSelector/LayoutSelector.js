@@ -1,40 +1,37 @@
 import { React, Component } from 'react';
+import { RadioControl } from '@wordpress/components';
 
 export class LayoutSelector extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			selectedOption: props.selectedOption
+		}
+		this.setSelected = this.setSelected.bind(this);
+	}
+
+	setSelected(option) {
+		this.setState({ selectedOption: option });
+		this.props.onSelectedLayoutChange(option);
 	}
 
 	render() {
 		return <div className='LayoutSelector'>
-			<style>{`
-        // TODO - Move to Sass or use styled-jsx
-
-				.LayoutSelector {
-					display: flex;
-					width: 100%;
-					margin-bottom: 30px;
-				}
-				.LayoutSelector .LayoutOption {
-					padding: 20px;
-					border-right: 1px solid #ccc;
-					width: 100%;
-				}
-				.LayoutSelector .LayoutOption:last-child {
-					border-right: 0;
-				}
-				.LayoutSelector .help {
-					font-family: Roboto;
-					font-size: 10pt;
-					margin-top: 10px;
-				}
-			`}
-			</style>
 			{
 				this.props.options.map(layoutOption => {
 					return (
-						<div className='LayoutOption'>
-							<h5>{ layoutOption.label }</h5>
+						<label className='LayoutOption'>
+							<div style={{ display: 'flex' }}>
+								<RadioControl
+								  name={ 'layoutOption' }
+								  selected={ Number(this.state.selectedOption) }
+									options={[
+										{ value: Number(layoutOption.value) }
+									]}
+									onChange={ this.setSelected }
+								/>
+								{ layoutOption.label }
+							</div>
 							{
 								layoutOption.image
 								? <img src={ layoutOption.image } />
@@ -45,7 +42,7 @@ export class LayoutSelector extends Component {
 								? <p className='help'>{ layoutOption.help }</p>
 								: null
 							}
-						</div>
+						</label>
 					)
 				})
 			}

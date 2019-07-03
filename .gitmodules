@@ -1,0 +1,6 @@
+[submodule "react-blocks/src/styles/planet4-styleguide"]
+	path = react-blocks/src/styles/planet4-styleguide
+	url = https://github.com/greenpeace/planet4-styleguide
+[submodule "react-blocks/src/styles/styleguide"]
+	path = react-blocks/src/styles/styleguide
+	url = https://github.com/greenpeace/planet4-styleguide

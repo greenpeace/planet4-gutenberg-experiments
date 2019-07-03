@@ -1,0 +1,214 @@
+/**
+* Test if `$value` is a valid direction
+*
+* @param {*} $value - Value to test
+* @return {Bool}
+*/
+/**
+* Convert a direction to legacy syntax
+*
+* @param {Keyword | Angle} $value - Value to convert
+* @require {function} is-direction
+* @require {function} convert-angle
+*/
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+.covers-block .row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.covers-block .limit-visibility {
+  margin-top: -16px; }
+  @media (min-width: 992px) {
+    .covers-block .limit-visibility {
+      margin-top: -32px; } }
+
+.show-3-covers .limit-visibility .cover-card-column:nth-child(n+3) {
+  display: none; }
+
+@media (min-width: 992px) {
+  .show-3-covers .limit-visibility .cover-card-column:nth-child(-n+4) {
+    display: block; }
+  .show-3-covers .limit-visibility .cover-card-column:nth-child(n+4) {
+    display: none; } }
+
+.show-6-covers .limit-visibility .cover-card-column:nth-child(n+5) {
+  display: none; }
+
+@media (min-width: 992px) {
+  .show-6-covers .limit-visibility .cover-card-column:nth-child(-n+7) {
+    display: block; }
+  .show-6-covers .limit-visibility .cover-card-column:nth-child(n+7) {
+    display: none; } }
+
+.show-all-covers .limit-visibility .cover-card-column:nth-child(n+5) {
+  display: none; }
+
+@media (min-width: 992px) {
+  .show-all-covers .limit-visibility .cover-card-column:nth-child(n+5) {
+    display: block; } }
+
+.cover-card {
+  flex-basis: 100%;
+  padding: 32px 15px 60px;
+  margin-top: 16px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  background-size: cover;
+  background-position: top;
+  color: #191919; }
+  @media (min-width: 768px) {
+    .cover-card {
+      flex-basis: 48%;
+      min-height: 414px;
+      padding: 18px 15px 60px;
+      margin-top: 32px; } }
+  @media (min-width: 992px) {
+    .cover-card {
+      flex-basis: 32%;
+      min-height: 364px;
+      max-height: 364px; } }
+  @media (min-width: 1200px) {
+    .cover-card {
+      padding: 32px 24px 60px; } }
+  .cover-card:before {
+    content: "";
+    opacity: 0;
+    transition: opacity 100ms linear;
+    position: absolute; }
+  .cover-card:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); }
+  .cover-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+    .cover-card:hover:before {
+      content: "";
+      background: linear-gradient(180deg, rgba(51, 51, 51, 0.6), rgba(250, 247, 236, 0.9), rgba(255, 255, 255, 0.8));
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 1; }
+    @media (min-width: 768px) {
+      .cover-card:hover p {
+        color: #191919;
+        display: block; } }
+    .cover-card:hover .btn {
+      background-color: #ee562d;
+      border-color: #ee562d; }
+  .cover-card--evergreen:before {
+    content: "";
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.25; }
+  .cover-card--evergreen:hover:before {
+    content: "";
+    background: #1b4a1b;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7; }
+  .cover-card--evergreen:hover h2,
+  .cover-card--evergreen:hover p {
+    color: #fff; }
+  .cover-card.action-card {
+    margin-bottom: 32px; }
+  .cover-card.dark-card-bg {
+    color: #fff; }
+  .cover-card > * {
+    position: relative;
+    z-index: 1; }
+  .cover-card .cover-card-heading {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    margin-bottom: 24px;
+    padding-top: 0;
+    max-width: 80%;
+    transition: color 100ms linear;
+    color: #fff;
+    text-shadow: 1px 1px 3px #000; }
+    @media (min-width: 992px) {
+      .cover-card .cover-card-heading {
+        font-size: 1.5rem;
+        margin-top: 8px;
+        max-width: 100%; } }
+  .cover-card p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    display: none; }
+  @media (min-width: 992px) {
+    .cover-card {
+      transition: box-shadow 150ms linear;
+      padding-bottom: 70px; }
+      .cover-card:not(.single-cover) {
+        box-shadow: none; }
+        .cover-card:not(.single-cover):hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); } }
+
+.cover-card-tag {
+  color: #ffd204;
+  display: inline-block;
+  margin-bottom: 8px;
+  text-decoration: none;
+  text-shadow: 1.5px 1.5px 1.5px #000;
+  font-weight: 800;
+  font-family: "Roboto", sans-serif; }
+  .cover-card-tag:hover {
+    color: #ffd204; }
+  @media (min-width: 992px) {
+    .cover-card-tag {
+      margin-bottom: 0;
+      font-size: 0.875rem;
+      margin-right: 4px; } }
+
+.cover-card-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 15px auto;
+  width: 92%;
+  cursor: pointer; }
+
+.load-more-covers-button-div {
+  margin-top: 32px; }
+
+.LayoutSelector {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  cursor: pointer; }
+  .LayoutSelector .LayoutOption {
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    width: 100%; }
+  .LayoutSelector .LayoutOption:last-child {
+    border-right: 0; }
+  .LayoutSelector .help {
+    font-family: "Roboto", sans-serif;
+    font-size: 10pt;
+    margin-top: 10px; }
+
+.Preview .PreviewBar {
+  border-bottom: 1px solid #8bcc49;
+  font-style: italic;
+  padding: 12px; }
+
+
+/*# sourceMappingURL=style.min.css.map*/

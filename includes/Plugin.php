@@ -32,7 +32,6 @@ class Planet4_Gutenberg_Experiments {
 		return self::$instance;
 	}
 
-
 	/**
 	 * Constructor.
 	 */
@@ -40,6 +39,7 @@ class Planet4_Gutenberg_Experiments {
 		// Register a block category
 		add_filter( 'block_categories', [ $this, 'register_block_category' ], 10, 2 );
 
+		// Load the editor scripts
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 
 		// Load Blocks
@@ -48,26 +48,6 @@ class Planet4_Gutenberg_Experiments {
 			new Blocks\Covers(),
 		];
 	}
-
-	public function enqueue_editor_scripts() {
-		wp_enqueue_style( 'wp-components' );
-
-		// Enqueue editor script for all Blocks in this Plugin
-    wp_enqueue_script(
-      'planet4-gutenberg-experiments-editor-script',                      // - Script handler
-      P4_GUTENBERG_EXPERIMENTS_BASE_URL .
-      'react-blocks/build/editorIndex.js',     		                        // - Bundled JS for the editor
-      [ 'wp-blocks', 'wp-components', 'wp-data' ]                         // - Helpers for registering blocks
-		);
-
-		// Variables exposed from PHP to JS,
-		// WP calls this "localizing a script"...
-		$reflectionVars = [
-			'home' => P4_GUTENBERG_EXPERIMENTS_BASE_URL . '/public/'
-		];
-		wp_localize_script( 'planet4-gutenberg-experiments-editor-script', 'p4ge_vars', $reflectionVars );
-	}
-
 
 	/**
 	 * Registers a new category for our blocks
@@ -87,5 +67,42 @@ class Planet4_Gutenberg_Experiments {
 				],
 			]
 		);
+	}
+
+	public function enqueue_editor_scripts() {
+		wp_enqueue_style( 'wp-components' );
+
+		// These styles from the master theme are enqueued on the frontend
+		// but not in the admin side.
+		// wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', [], '4.1.1' );
+		// wp_enqueue_style( 'parent-style', $this->theme_dir . '/style.css', [], $css_creation );
+
+		wp_enqueue_style(
+			'p4ge-blocks',
+			P4_GUTENBERG_EXPERIMENTS_BASE_URL .
+			'react-blocks/build/style.min.css', // - Bundled CSS for the blocks
+			[ 'bootstrap' ]
+		);
+
+		// Enqueue editor script for all Blocks in this Plugin
+    wp_enqueue_script(
+      'planet4-gutenberg-experiments-editor-script',                       // - Script handler
+      P4_GUTENBERG_EXPERIMENTS_BASE_URL .
+      'react-blocks/build/editorIndex.js',     		                         // - Bundled JS for the editor
+      [
+				'wp-blocks',      // - Helpers for registering blocks
+				'wp-components',  // - Wordpress components
+				'wp-element',     // - WP React wrapper
+				'wp-data',        // - WP data helpers
+				'wp-i18n'         // - Exports the __() function
+			]
+		);
+
+		// Variables exposed from PHP to JS,
+		// WP calls this "localizing a script"...
+		$reflectionVars = [
+			'home' => P4_GUTENBERG_EXPERIMENTS_BASE_URL . '/public/'
+		];
+		wp_localize_script( 'planet4-gutenberg-experiments-editor-script', 'p4ge_vars', $reflectionVars );
 	}
 }

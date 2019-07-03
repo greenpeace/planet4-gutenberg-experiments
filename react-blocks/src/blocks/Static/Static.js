@@ -36,13 +36,13 @@ export class Static extends Component {
 
 		render() {
 			return (
-					<div>
-							{
-								this.props.isSelected
-								? this.renderEdit()
-								: this.renderView()
-							}
-					</div>
+				<div>
+					{
+						this.props.isSelected
+						? this.renderEdit()
+						: this.renderView()
+					}
+				</div>
 			);
 		}
 };
