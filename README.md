@@ -61,11 +61,13 @@ react-blocks
 Everything is under `includes` and "borrowing" (cof, cof, stealing) code from Stefan's GPCH Gutenberg blocks.
 The block files are commented to see how the React block bundles are injected in the editor and the frontend.
 
-For example: `ArcticSunrise.php`
+For example: `Covers.php`
 
 ### `edit()`, `save()` and the absence of `render()` or `view()`
 
 WP's native `save()` function for a Gutenberg Block is not what you may expect. It is a *pure function* that you can use if you want to **generate static content using JS in the client side, to be saved on the server**.
+
+The `save()` method is disabled (returns null) for plugins rendered on the server side.
 
 A JS Gutenberg Block has two main methods:
 - `edit()`: Which renders the block in the editor
@@ -98,15 +100,32 @@ So, `save()` is good for generating static HTML content from the client side. Th
 Our goal for the moment is to convert the blocks from Shortcake to Gutenberg.
 The rendering part of the block will still be handled by Timber/Twig templates.
 
-In this repository, things that used to be called `someblock-controller.php` are pretty much the block files inside `includes/blocks`.
-
-A good place to start would be the [Covers.php](includes/blocks/Covers.php) file.
+The steps would be:
 
 We need to make some changes in the Master Theme and the Blocks Plugin to make the Gutenberg blocks
-work with our current setup.
+work with our current setup. Previews are now rendered on the editor directly, not using an iframe.
+
+_TODO: define an ENV flag or add retro-compatible changes to make the new blocks work with the current code._
+
+* You'll probably need to branch the old blocks plugin in order to disable the block you are converting.
+
+* Disable the block in the Blocks Plugin by commenting it from `planet4-blocks.php`, to make sure the block is not rendered by the Blocks plugin anymore.
+
+* Disable the block's styles in the Blocks plugin and regenerate the SASS files to ensure you are not using the styles from the Blocks plugin.
+
+* Create a new class for the block. In this repository, things that used to be called `someblock-controller.php` are pretty much the block files inside `includes/blocks`. A good place to start would be the [Covers.php](includes/blocks/Covers.php) file. You need to basically "register" the block, and create a `render_callback` method which will render the block from PHP.
+
+* Create a new class for registering the block in JS (see: [CoversBlock.js](react-blocks/src/blocks/Covers/CoversBlock.js)) and the React component of the block itself (see: [Covers.js](react-blocks/src/blocks/Covers/Covers.js)). Adapt to your needs to provide the basics: a name, icon, the block's attributes, the `edit()` and `save()` functions. Define the `transforms` for the **shortcode** to be able to transform an existing **shortcode** into a **block** automatically from the editor (might be irrelevant if we migrate everything to the new HTML comments syntax).
+
+* Import the block registration class (`SomethingBlock.js`) in the [`editorIndex.js`](react-blocks/src/editorIndex.js) file.
+
+* Run `npm start` to build the watcher and regenerate the bundle on every change.
+
+
 
 ### Recommended reading
 
 - Everything on ES6 syntax features: specially destructuring, the spread operator, arrow functions, generators.
+- https://redux.js.org/introduction/getting-started
 - https://riad.blog/2018/06/07/efficient-client-data-management-for-wordpress-plugins/
 - https://theeventscalendar.com/rolling-our-own-redux-gutenberg-block-editor/
