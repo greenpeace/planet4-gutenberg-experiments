@@ -106499,7 +106499,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.post_types);
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, this.props.isSelected ? this.renderEdit() : null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_components_Preview__WEBPACK_IMPORTED_MODULE_9__["Preview"], {
         showBar: this.props.isSelected
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ServerSideRender"], {
@@ -106554,6 +106553,9 @@ var CoversBlock = function CoversBlock() {
     title: 'Covers',
     icon: _CoversIcon_js__WEBPACK_IMPORTED_MODULE_3__["CoversIcon"],
     category: 'planet4-gutenberg-experiments',
+    // Transform the shortcode into a Gutenberg block
+    // this is used when a user clicks "Convert to blocks"
+    // on the "Classic Editor" block
     transforms: {
       from: [{
         type: 'shortcode',
@@ -106562,6 +106564,10 @@ var CoversBlock = function CoversBlock() {
         attributes: {
           cover_type: {
             type: 'integer',
+            // This `shortcode` definition will be used as a callback,
+            // it is a function which expects an object with at least
+            // a `named` key with `cover_type` property whose default value is 1.
+            // See: https://simonsmith.io/destructuring-objects-as-function-parameters-in-es6
             shortcode: function shortcode(_ref) {
               var _ref$named$cover_type = _ref.named.cover_type,
                   cover_type = _ref$named$cover_type === void 0 ? '1' : _ref$named$cover_type;
@@ -106587,6 +106593,7 @@ var CoversBlock = function CoversBlock() {
         }
       }]
     },
+    // This attributes definition mimics the one in the PHP side.
     attributes: {
       title: {
         type: 'string'
@@ -106615,6 +106622,9 @@ var CoversBlock = function CoversBlock() {
         default: 1
       }
     },
+    // withSelect is a "Higher Order Component", it works as
+    // a Decorator, it will provide some basic API functionality
+    // through `select`.
     edit: withSelect(function (select) {
       var tagsTaxonomy = 'post_tag';
       var postTypesTaxonomy = 'p4-page-type';
@@ -106623,7 +106633,10 @@ var CoversBlock = function CoversBlock() {
       };
 
       var _select = select('core'),
-          getEntityRecords = _select.getEntityRecords;
+          getEntityRecords = _select.getEntityRecords; // We should probably wrap all these in a single call,
+      // or maybe use our own way of retrieving data from the
+      // API, I don't know how this scales.
+
 
       var tagsList = getEntityRecords('taxonomy', tagsTaxonomy, args);
       var postTypesList = getEntityRecords('taxonomy', postTypesTaxonomy);
@@ -106642,12 +106655,15 @@ var CoversBlock = function CoversBlock() {
           setAttributes = _ref4.setAttributes;
 
       if (!tagsList || !postTypesList || !posts) {
-        return "Loading tags, post types and posts...";
-      }
+        return "Populating block's fields...";
+      } // TO-DO: Check for posts types and posts too...
+
 
       if (!tagsList && !tagsList.length === 0) {
-        return "No tags";
-      }
+        return "No tags...";
+      } // These methods are passed down to the
+      // Covers component, they update the corresponding attribute.
+
 
       function onRowsChange(value) {
         setAttributes({
@@ -106689,7 +106705,10 @@ var CoversBlock = function CoversBlock() {
         setAttributes({
           cover_type: Number(value)
         });
-      }
+      } // We pass down all the attributes to Covers as props using
+      // the spread operator. Then we selectively add more
+      // props.
+
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_Covers_js__WEBPACK_IMPORTED_MODULE_4__["Covers"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
         isSelected: isSelected,

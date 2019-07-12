@@ -13,10 +13,30 @@ class Covers extends Base_Block {
 
   const POSTS_LIMIT = 50;
 
+  public function add_block_shortcode($attributes, $content) {
+    $attributes = shortcode_atts([
+      'cover_type' => 1,
+      'covers_view' => 1,
+      'title' => '',
+      'description' => '',
+      'tags' => [],
+    ], $attributes, 'shortcake_newcovers');
+
+    $attributes['tags'] = [6,8];// explode(',', $attributes['tags']);
+    $attributes['cover_type'] = (int) $attributes['cover_type'];
+
+    return $this->render($attributes);
+  }
+
   public function __construct() {
+    add_shortcode('shortcake_newcovers', [ $this, 'add_block_shortcode' ]);
+
     register_block_type( 'planet4-gutenberg-experiments/covers', [  // - Register the block for the editor
       'editor_script' => 'planet4-gutenberg-experiments',           //   in the PHP side.
-      'render_callback' => [ $this, 'render' ],
+      'render_callback' => [ $this, 'render' ],                     // - This render callback will be exposed
+                                                                    //   to render the block.
+
+      // These attributes match the current fields
       'attributes'      => [
         'cover_type'    => [
             'type'      => 'integer',
@@ -37,7 +57,7 @@ class Covers extends Base_Block {
         'tags' => [
           'type'      => 'array',
           'items' => [
-              'type' => 'integer',
+              'type' => 'integer', // Array definitions require an item type
           ],
         ],
         'post_types' => [
@@ -59,9 +79,10 @@ class Covers extends Base_Block {
    *
    * @return array The data to be passed in the View.
    */
-  public function prepare_data( $fields, $content = '', $shortcode_tag = self::BLOCK_NAME ) : array {
+  public function prepare_data( $fields ) : array {
     $cover_type = $fields['cover_type'] ?? '';
     $covers     = false;
+
     if ( 1 === $cover_type ) {
       $covers = $this->populate_posts_for_act_pages( $fields );
     } elseif ( 2 === $cover_type ) {
@@ -359,14 +380,16 @@ class Covers extends Base_Block {
     return $posts_array;
   }
 
+  // The attributes are passed to the API from React
   public function render($attributes) {
-    // return json_encode($attributes);
-    // echo "Hola";
+    // This is the same
     $covers_data = $this->prepare_data($attributes);
-    // var_dump($covers_data);
 
+    // Sets the template location
+    // TODO: Improve? Move to Base_Block class?
     \Timber::$locations = P4_GUTENBERG_EXPERIMENTS_BASE_PATH . 'templates';
 
+    // I needed to return the output as a string
     $coversBlock = \Timber::compile( 'newcovers.twig', $covers_data );
     return $coversBlock;
   }

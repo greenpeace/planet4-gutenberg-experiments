@@ -72,11 +72,6 @@ class Planet4_Gutenberg_Experiments {
 	public function enqueue_editor_scripts() {
 		wp_enqueue_style( 'wp-components' );
 
-		// These styles from the master theme are enqueued on the frontend
-		// but not in the admin side.
-		// wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', [], '4.1.1' );
-		// wp_enqueue_style( 'parent-style', $this->theme_dir . '/style.css', [], $css_creation );
-
 		wp_enqueue_style(
 			'p4ge-blocks',
 			P4_GUTENBERG_EXPERIMENTS_BASE_URL .
@@ -94,6 +89,7 @@ class Planet4_Gutenberg_Experiments {
 				'wp-components',  // - Wordpress components
 				'wp-element',     // - WP React wrapper
 				'wp-data',        // - WP data helpers
+				'wp-editor',      // - WP editor helpers
 				'wp-i18n'         // - Exports the __() function
 			]
 		);

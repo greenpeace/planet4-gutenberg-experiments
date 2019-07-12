@@ -80,14 +80,33 @@ So, `save()` is good for generating static HTML content from the client side. Th
 
 ### Examples
 
-- Block 1: A pure Gutenberg React static block ("Hello World" example).
-- Block 2: A Gutenberg React block in the editor side, and React on the frontend.
-- Block 3: A Gutenberg React block with API calls from the client side.
-- Block 4: A Gutenberg React block in the editor side, PHP data processing, and React on the frontend.
-- Block 5: A Gutenberg React block in the editor side, PHP data processing, and PHP rendering.
-
-- Covers block: The Covers block ported to one of our example models (guess which one!).
+- Static: A pure Gutenberg React static block ("Hello World" example).
+- StaticWithAPI: A Gutenberg React block in the editor side, which gets some data from an API.
+- Covers: An implementation of our Covers block in Gutenberg/React,  PHP data processing, and PHP rendering.
+- ArcticSunrise: A Gutenberg/React block which uses React on the frontend too. This is not WP's default behavior, React is only used in the editor side by default.
 
 ### Other notes
 
 - `index.js` naming convention: Redundancy was chosen over abbreviating the import clause in JS because if you use the `MyModule/index.js` default, you'll end up having a zillion files named `index.js`, which I found quite problematic in my experience with large JS codebases.
+
+- Gutenberg is not React. It wraps React, it uses React, and it uses some variants of the popular React stack, like Redux (for WP's "data"). It may divert from some "standard" React patterns you will find online, so this is a thing to keep in mind. The differences are pretty minor.
+
+
+
+### Migrating a block from the Blocks plugin
+
+Our goal for the moment is to convert the blocks from Shortcake to Gutenberg.
+The rendering part of the block will still be handled by Timber/Twig templates.
+
+In this repository, things that used to be called `someblock-controller.php` are pretty much the block files inside `includes/blocks`.
+
+A good place to start would be the [Covers.php](includes/blocks/Covers.php) file.
+
+We need to make some changes in the Master Theme and the Blocks Plugin to make the Gutenberg blocks
+work with our current setup.
+
+### Recommended reading
+
+- Everything on ES6 syntax features: specially destructuring, the spread operator, arrow functions, generators.
+- https://riad.blog/2018/06/07/efficient-client-data-management-for-wordpress-plugins/
+- https://theeventscalendar.com/rolling-our-own-redux-gutenberg-block-editor/

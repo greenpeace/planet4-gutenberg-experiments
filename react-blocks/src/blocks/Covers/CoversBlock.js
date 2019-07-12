@@ -10,6 +10,10 @@ export class CoversBlock {
             title: 'Covers',
             icon: CoversIcon,
 						category: 'planet4-gutenberg-experiments',
+
+						// Transform the shortcode into a Gutenberg block
+						// this is used when a user clicks "Convert to blocks"
+						// on the "Classic Editor" block
 						transforms: {
 							from: [
 								{
@@ -19,6 +23,10 @@ export class CoversBlock {
 										attributes: {
 											cover_type: {
 												type: 'integer',
+												// This `shortcode` definition will be used as a callback,
+												// it is a function which expects an object with at least
+												// a `named` key with `cover_type` property whose default value is 1.
+												// See: https://simonsmith.io/destructuring-objects-as-function-parameters-in-es6
 												shortcode: ( { named: { cover_type = '1' } } ) => cover_type,
 											},
 											title: {
@@ -33,6 +41,7 @@ export class CoversBlock {
 								},
 							]
 						},
+						// This attributes definition mimics the one in the PHP side.
 						attributes: {
 							title: {
 								type: 'string',
@@ -61,6 +70,9 @@ export class CoversBlock {
 								default: 1
 							}
 						},
+						// withSelect is a "Higher Order Component", it works as
+						// a Decorator, it will provide some basic API functionality
+						// through `select`.
 						edit: withSelect( ( select ) => {
 							const tagsTaxonomy = 'post_tag';
 							const postTypesTaxonomy = 'p4-page-type';
@@ -68,6 +80,10 @@ export class CoversBlock {
 								hide_empty: false,
 							};
 							const { getEntityRecords } = select( 'core' );
+
+							// We should probably wrap all these in a single call,
+							// or maybe use our own way of retrieving data from the
+							// API, I don't know how this scales.
 							const tagsList = getEntityRecords( 'taxonomy', tagsTaxonomy, args );
 							const postTypesList = getEntityRecords( 'taxonomy', postTypesTaxonomy );
 							const posts = getEntityRecords( 'postType', 'post' );
@@ -87,12 +103,16 @@ export class CoversBlock {
 						} ) => {
 
 								if ( !tagsList || !postTypesList || !posts ) {
-										return "Loading tags, post types and posts...";
+										return "Populating block's fields...";
 								}
 
+								// TO-DO: Check for posts types and posts too...
 								if ( !tagsList && !tagsList.length === 0 ) {
-										return "No tags";
+										return "No tags...";
 								}
+
+								// These methods are passed down to the
+								// Covers component, they update the corresponding attribute.
 
 								function onRowsChange( value ) {
 									setAttributes( { covers_view: value } );
@@ -122,6 +142,9 @@ export class CoversBlock {
 									setAttributes( { cover_type: Number(value) } );
 								}
 
+								// We pass down all the attributes to Covers as props using
+								// the spread operator. Then we selectively add more
+								// props.
 								return <Covers
 								  { ...attributes }
 									isSelected={ isSelected }

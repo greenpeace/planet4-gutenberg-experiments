@@ -1,10 +1,12 @@
 import { React, Component } from 'react';
+
 import {
 	FormTokenField,
 	SelectControl,
 	TextControl,
 	TextareaControl,
 	ServerSideRender } from '@wordpress/components';
+
 import { LayoutSelector } from '../../components/LayoutSelector/LayoutSelector';
 import { Preview } from '../../components/Preview';
 
@@ -147,7 +149,6 @@ export class Covers extends Component {
 		}
 
 		render() {
-			console.log(this.props.post_types);
 			return (
 					<div>
 							{
