@@ -106220,10 +106220,9 @@ var ArcticSunriseBlock = function ArcticSunriseBlock() {
 
   var registerBlockType = wp.blocks.registerBlockType; // - Extract the `registerBlockType` function from
   //   the `wp.blocks` object.
-  //   See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+  // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
 
   registerBlockType('planet4-gutenberg-experiments/arctic-sunrise', {
-    // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
     title: 'Arctic Sunrise',
     // - Sets the block title
     icon: _ArcticSunriseIcon_js__WEBPACK_IMPORTED_MODULE_2__["ArcticSunriseIcon"],
@@ -107672,6 +107671,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./react-blocks/src/convertBlocks.js":
+/*!*******************************************!*\
+  !*** ./react-blocks/src/convertBlocks.js ***!
+  \*******************************************/
+/*! exports provided: convertBlocks */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertBlocks", function() { return convertBlocks; });
+var convertBlocks = function convertBlocks() {
+  wp.data.subscribe(function () {
+    var editor = wp.data.select('core/editor');
+
+    if (editor.getBlockCount() === 1) {
+      var blocks = editor.getBlocks();
+      blocks.forEach(function (block) {
+        if (block.name === 'core/freeform') {
+          wp.data.dispatch('core/editor').replaceBlocks(block.clientId, wp.blocks.rawHandler({
+            HTML: wp.blocks.getBlockContent(block)
+          }));
+        }
+
+        ;
+      });
+    }
+  });
+};
+
+/***/ }),
+
 /***/ "./react-blocks/src/editorIndex.js":
 /*!*****************************************!*\
   !*** ./react-blocks/src/editorIndex.js ***!
@@ -107685,6 +107715,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_StaticWithAPI_StaticWithAPIBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/StaticWithAPI/StaticWithAPIBlock */ "./react-blocks/src/blocks/StaticWithAPI/StaticWithAPIBlock.js");
 /* harmony import */ var _blocks_ArcticSunrise_ArcticSunriseBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/ArcticSunrise/ArcticSunriseBlock */ "./react-blocks/src/blocks/ArcticSunrise/ArcticSunriseBlock.js");
 /* harmony import */ var _blocks_Covers_CoversBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./blocks/Covers/CoversBlock */ "./react-blocks/src/blocks/Covers/CoversBlock.js");
+/* harmony import */ var _convertBlocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./convertBlocks */ "./react-blocks/src/convertBlocks.js");
+
 
 
 
@@ -107693,6 +107725,7 @@ var staticBlock = new _blocks_Static_StaticBlock__WEBPACK_IMPORTED_MODULE_0__["S
 var staticWithAPIBlock = new _blocks_StaticWithAPI_StaticWithAPIBlock__WEBPACK_IMPORTED_MODULE_1__["StaticWithAPIBlock"]();
 var arcticSunriseBlock = new _blocks_ArcticSunrise_ArcticSunriseBlock__WEBPACK_IMPORTED_MODULE_2__["ArcticSunriseBlock"]();
 var coversBlock = new _blocks_Covers_CoversBlock__WEBPACK_IMPORTED_MODULE_3__["CoversBlock"]();
+Object(_convertBlocks__WEBPACK_IMPORTED_MODULE_4__["convertBlocks"])();
 
 /***/ }),
 
