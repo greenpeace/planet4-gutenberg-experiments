@@ -30,7 +30,7 @@
   "dependencies": {
     "@wordpress/components": "^8.0.0",
     "@wordpress/data": "^4.6.0",
-    "three": "^0.105.2",
+    "three": "^0.125.0",
     "three-fbx-loader": "^1.0.3"
   }
 }
